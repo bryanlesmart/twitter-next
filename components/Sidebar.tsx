@@ -8,7 +8,7 @@ import {HashtagIcon ,DotsHorizontalIcon, DotsCircleHorizontalIcon,UserIcon , Cli
 
 export default function Sidebar () {
   return (
-    <div className="hidden sm:flex flex-col p-2 xl:items-center fixed h-full">
+    <div className="hidden sm:flex flex-col p-2 xl:items-center fixed h-full xl:ml-24">
         {/* {Twitter Logo} */}
         <div className="hoverEffect p-0 hover:bg-blue-100 xl:px-1">
             <Image width="50" height="50" alt="twitter.logo" src="/images/twitter-logo.svg"></Image>

@@ -1,10 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { SearchIcon } from "@heroicons/react/outline"
 import { AnimatePresence, motion } from "framer-motion"
+import { useState } from "react"
+import News from './News'
+
 
 type Props = {}
 
-export default function Widgets({}: Props) {
+export default function Widgets({ newsResults }: Props) {
+    const [articleNum, setArticleNum ] = useState(3)
   return (
     <div className="xl:w-[600px] hidden lg:inline ml-8 space-y-5">
     <div className="w-[90%] xl:w-[75%] sticky top-0 bg-white py-1.5 z-50">
@@ -20,18 +24,22 @@ export default function Widgets({}: Props) {
 
     <div className="text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2 w-[90%] xl:w-[75%]">
       <h4 className="font-bold text-xl px-4">Whats happening</h4>
+      
+  
       <AnimatePresence>
-        {/* {newsResults.slice(0, articleNum).map((article) => ( */}
-          <motion.div
-            // key={article.title}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-          >
-            {/* <News key={article.title} article={article} /> */}
-          </motion.div>
-        {/* ))} */}
+     
+        {newsResults.slice(0, articleNum).map((article) => (
+               <motion.div
+               key={article.title}
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               transition={{ duration: 1 }}
+             >
+               <News key={article.title} article={article} />
+             </motion.div>
+        ))}
+     
       </AnimatePresence>
       <button
         onClick={() => setArticleNum(articleNum + 3)}
@@ -87,3 +95,7 @@ export default function Widgets({}: Props) {
   </div>
   )
 }
+
+
+
+
