@@ -36,11 +36,11 @@ export default function Post({post}: Props) {
 
              <div className="flex justify-between text-gray-500 p-2">
             
-                    <ChatIcon className="hoverEffect h-11 w-9  hover:text-sky-500 hover:bg-sky-100"/>
-                    <TrashIcon className="hoverEffect h-11 w-9 hover:text-red-600 hover:bg-red-100"/>
-                    <HeartIcon className="hoverEffect h-11 w-9 hover:text-red-600 hover:bg-red-100"/>
-                    <ShareIcon className="hoverEffect h-11 w-9 hover:text-sky-500 hover:bg-sky-100"/>
-                    <ChartBarIcon className="hoverEffect h-11 w-9 hover:text-sky-500 hover:bg-sky-100 "/>
+                    <ChatIcon className="hoverEffect h-9 w-9  hover:text-sky-500 hover:bg-sky-100"/>
+                    <TrashIcon className="hoverEffect h-9 w-9 hover:text-red-600 hover:bg-red-100"/>
+                    <HeartIcon className="hoverEffect h-9 w-9 hover:text-red-600 hover:bg-red-100"/>
+                    <ShareIcon className="hoverEffect h-9 w-9 hover:text-sky-500 hover:bg-sky-100"/>
+                    <ChartBarIcon className="hoverEffect h-9 w-9 hover:text-sky-500 hover:bg-sky-100 "/>
              </div>
         </div>
       </div>

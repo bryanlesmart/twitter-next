@@ -10,7 +10,7 @@ type Props = {}
 
 export default function Widgets({ newsResults, randomUsersResults }: Props) {
     const [articleNum, setArticleNum ] = useState(3)
-    const [randomUserNum, setRandomUserNum ] = useState(10)
+    const [randomUserNum, setRandomUserNum ] = useState(3)
 
   return (
     <div className="xl:w-[600px] hidden lg:inline ml-8 space-y-5">
