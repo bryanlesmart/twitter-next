@@ -4,7 +4,7 @@ type Props = {}
 
 export default function Post({post}: Props) {
   return (
-    <div className="flex p-3 cursor-pointer border-b border-gray-200">
+    <div className="flex p-3     border-b border-gray-200">
       {/* user image */}
       <img className="h-11 w-11 rounded-full mr-4 " src={post.userImage} alt={post.name} />
                
@@ -36,11 +36,11 @@ export default function Post({post}: Props) {
 
              <div className="flex justify-between text-gray-500 p-2">
             
-                    <ChatIcon className="hoverEffect h-9 w-9  hover:text-sky-500 hover:bg-sky-100"/>
-                    <TrashIcon className="hoverEffect h-9 w-9 hover:text-red-600 hover:bg-red-100"/>
-                    <HeartIcon className="hoverEffect h-9 w-9 hover:text-red-600 hover:bg-red-100"/>
-                    <ShareIcon className="hoverEffect h-9 w-9 hover:text-sky-500 hover:bg-sky-100"/>
-                    <ChartBarIcon className="hoverEffect h-9 w-9 hover:text-sky-500 hover:bg-sky-100 "/>
+                    <ChatIcon className="hoverEffect h-11 w-9  hover:text-sky-500 hover:bg-sky-100"/>
+                    <TrashIcon className="hoverEffect h-11 w-9 hover:text-red-600 hover:bg-red-100"/>
+                    <HeartIcon className="hoverEffect h-11 w-9 hover:text-red-600 hover:bg-red-100"/>
+                    <ShareIcon className="hoverEffect h-11 w-9 hover:text-sky-500 hover:bg-sky-100"/>
+                    <ChartBarIcon className="hoverEffect h-11 w-9 hover:text-sky-500 hover:bg-sky-100 "/>
              </div>
         </div>
       </div>
