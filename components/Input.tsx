@@ -10,7 +10,7 @@ export default function Input({}: Props) {
   return (
    <>
      {session && (
-         <div className="flex border-b border-gray-200 p-3 space-x-3 ">
+         <div className="flex border-b border-gray-200 p-3 space-x-3 cursor-pointer ">
          <img  onClick={signOut} className="rounded-full h-11 w-11 xl:mr-2 cursor-pointer hover:brightness-95" alt="profile"  src={session.user.image} />
          <div className="w-full divide-y divide-gray-200">
              <div className="">
