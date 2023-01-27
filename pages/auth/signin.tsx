@@ -31,7 +31,7 @@ export default function SignIn({ providers }: Props) {
           onClick={()=> signIn(provider.id, {callbackUrl: "/" }) }
           className="bg-red-400 rounded-lg p-3 text-white hover:bg-red-500"
         >
-          {provider.name}
+          Sign in with {provider.name}
         </button>
         ))}
       </div>
