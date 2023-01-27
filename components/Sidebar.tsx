@@ -4,9 +4,11 @@ import Image from 'next/image'
 import SidebarMenuItem from './SidebarMenuItem'
 import  { HomeIcon } from '@heroicons/react/solid'
 import {HashtagIcon ,DotsHorizontalIcon, DotsCircleHorizontalIcon,UserIcon , ClipboardIcon, BookmarkIcon,InboxIcon, BellIcon  } from '@heroicons/react/outline'
-
+import { useSession } from 'next-auth/react'
 
 export default function Sidebar () {
+    const { data: session } = useSession()
+    console.log(session)
   return (
     <div className="hidden sm:flex flex-col p-2 xl:items-center fixed h-full xl:ml-24">
         {/* {Twitter Logo} */}
