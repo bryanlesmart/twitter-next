@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { PhotographIcon, EmojiHappyIcon } from '@heroicons/react/outline'
+import { PhotographIcon, EmojiHappyIcon , XIcon} from '@heroicons/react/outline'
 import { useSession, signOut } from 'next-auth/react'
 import { useState, useRef } from 'react'
 import { db , storage } from '../firebase'
@@ -13,9 +13,13 @@ export default function Input({}: Props) {
     const { data : session } = useSession()
     const [input, setInput] = useState()
     const [selectedFile, setSelectedFile] = useState(null)
-    console.log(session)
-    const filePickerRef = useRef()
+    const [loading, setLoading] = useState(false)
+    const filePickerRef = useRef(null)
     const sendPost = async () => {
+
+        if(loading) return
+        setLoading(true)
+
         const docRef =  await addDoc(collection(db, "posts"),{
             id: session.user.id,
             text: input,
@@ -37,6 +41,7 @@ export default function Input({}: Props) {
         }
         setInput("")
         setSelectedFile(null)
+        setLoading(false)
     }
      
     const addImage = (e) => {
@@ -60,19 +65,24 @@ export default function Input({}: Props) {
              {selectedFile && (
                 <>
                     <div>
-                        <img src={selectedFile} alt="image" /> 
+                        <XIcon className="h-8 text-white  absolute cursor-pointer rounded-full bg-red-500" onClick={ () =>setSelectedFile(null)  }/>
+                        <img src={selectedFile} className={`${loading && "animate-pulse"}`} alt="image" /> 
                     </div>
                 </>
              )}
              <div className="flex items-center justify-between pt-2.5">
-                 <div className="flex">
-                     <div onClick={() => filePickerRef.current.click()}>
-                        <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:sky-100 " />
-                        <input type="file" hidden ref={filePickerRef} onChange={addImage} />
-                     </div>
-                     <EmojiHappyIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:sky-100 "/>
-                 </div>
-                 <button onClick={sendPost} disabled={!input} className=" disabled:opacity-50 bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95">Tweet</button>
+                 {!loading && (
+                    <>
+                        <div className="flex">
+                            <div onClick={() => filePickerRef.current.click()}>
+                                <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:sky-100 " />
+                                <input type="file" hidden ref={filePickerRef} onChange={addImage} />
+                            </div>
+                            <EmojiHappyIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:sky-100 "/>
+                        </div>
+                        <button onClick={sendPost} disabled={!input} className=" disabled:opacity-50 bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95">Tweet</button>
+                    </>
+                 )}
              </div>
          </div>
      </div>
