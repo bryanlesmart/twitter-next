@@ -1,12 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+import  Moment from 'react-moment'
 import { DotsHorizontalIcon , ChatIcon , TrashIcon , HeartIcon, ShareIcon , ChartBarIcon } from '@heroicons/react/outline'
 type Props = {}
 
 export default function Post({post}: Props) {
+  console.log(post)
   return (
     <div className="flex p-3     border-b border-gray-200">
       {/* user image */}
-      <img className="h-11 w-11 rounded-full mr-4 " src={post.userImage} alt={post.name} />
+      <img className="h-11 w-11 rounded-full mr-4 " src={post.data().userImage} alt={post.data().name} />
                
       {/* right side */}
       <div className="flex-1">
@@ -15,9 +17,9 @@ export default function Post({post}: Props) {
         <div className="flex items-center justify-between">
           {/* post user info */}
           <div className="flex items-center space-x-1 whitespace-nowrap">
-          <h4   className="font-bold text-[15px] sm:text-[16px] hover:underline">{post.name}</h4>
-                    <span className="text-sm sm:text-[15px]" >{post.user}</span>
-                    <span className="text-sm sm:text-[15px] hover:underline">{post.timestamp}</span>
+          <h4   className="font-bold text-[15px] sm:text-[16px] hover:underline">{post.data().name}</h4>
+                    <span className="text-sm sm:text-[15px]" >{post.data().username}</span>
+                    <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
           </div>
 
           {/* dot icon */}
@@ -25,12 +27,12 @@ export default function Post({post}: Props) {
         </div>
 
         {/* post text */}
-        <p  className="text-gray-800 text-[15px sm:text-[16px] mb-2" >{post.text}</p>
+        <p  className="text-gray-800 text-[15px sm:text-[16px] mb-2" >{post.data().text}</p>
        
 
         {/* post image */}
 
-        <img src={post.img} alt="image" className="rounded-2xl mr-2" />
+        <img src={post.data().image} alt="image" className="rounded-2xl mr-2" />
 
         {/* icons */}
 
