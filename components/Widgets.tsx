@@ -1,12 +1,11 @@
-/* eslint-disable react/jsx-no-duplicate-props */
-/* eslint-disable @next/next/no-img-element */
+
 import { SearchIcon } from "@heroicons/react/outline"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 import News from './News'
 
 
-type Props = {}
+
 
 export default function Widgets({ newsResults, randomUsersResults }: Props) {
     const [articleNum, setArticleNum ] = useState(3)
@@ -69,7 +68,6 @@ export default function Widgets({ newsResults, randomUsersResults }: Props) {
               <img
                 className="rounded-full"
                 width="40"
-                src=""
                 src={randomUser.picture.thumbnail}
                 alt=""
               />

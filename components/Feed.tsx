@@ -10,14 +10,14 @@ type Props = {}
 
 export default function Feed({}: Props) {
   const [posts, setPosts] = useState([])
-  useEffect(() => {
-    return (onSnapshot(
-      query(collection(db, "posts"), orderBy('timestamp', 'desc')),
-        (snapshot) =>{
-          (setPosts(snapshot.docs)) 
+  
+  useEffect(()=>{
+      return (onSnapshot(
+        query(collection(db, 'posts'), orderBy('timestamp', 'desc')),
+        (snapshot) => {
+          (setPosts(snapshot.docs))
         }
-      )
-    )
+      ))
   }, [posts])
 
   return (

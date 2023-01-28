@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
 import { PhotographIcon, EmojiHappyIcon , XIcon} from '@heroicons/react/outline'
 import { useSession, signOut } from 'next-auth/react'
 import { useState, useRef } from 'react'
 import { db , storage } from '../firebase'
-import { addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore'
+import { addDoc, collection, serverTimestamp, updateDoc, doc} from 'firebase/firestore'
 import { getDownloadURL, ref, uploadString,  } from "firebase/storage"
+
 
 type Props = {}
 
@@ -15,6 +15,8 @@ export default function Input({}: Props) {
     const [selectedFile, setSelectedFile] = useState(null)
     const [loading, setLoading] = useState(false)
     const filePickerRef = useRef(null)
+
+  
     const sendPost = async () => {
 
         if(loading) return
@@ -66,7 +68,7 @@ export default function Input({}: Props) {
                 <>
                     <div>
                         <XIcon className="h-8 text-white  absolute cursor-pointer rounded-full bg-red-500" onClick={ () =>setSelectedFile(null)  }/>
-                        <img src={selectedFile} className={`${loading && "animate-pulse"}`} alt="image" /> 
+                        <img  src={selectedFile} className={`${loading && "animate-pulse"}`} alt="image" /> 
                     </div>
                 </>
              )}

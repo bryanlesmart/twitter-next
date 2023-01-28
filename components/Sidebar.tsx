@@ -24,7 +24,7 @@ export default function Sidebar () {
             <SidebarMenuItem text="Explore" Icon={HashtagIcon}/>
             {session && (
                 <>
-                    <SidebarMenuItem text="Notification" Icon={BellIcon}/>
+                    <SidebarMenuItem text="Notification" Icon={BellIcon} />
                     <SidebarMenuItem text="Messages" Icon={InboxIcon}/>
                     <SidebarMenuItem text="Bookmark" Icon={BookmarkIcon}/>
                     <SidebarMenuItem text="Lists" Icon={ClipboardIcon}/>

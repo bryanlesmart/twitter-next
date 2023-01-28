@@ -23,9 +23,9 @@ export const authOptions = {
   },
 
   callbacks: {
-   async session ({ session, token, user}) {
+   async session ({ session, token, }) {
       session.user.username  = session.user.name.split(" ").join("").toLowerCase()
-      session.user.id = token.sub
+      session.user.uid = token.sub
       return session
    }
   }
