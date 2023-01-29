@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 
-type Props = {}
-
-export default function News({ article }: Props) {
+export default function News({ article }) {
   return (
     <a rel="noreferrer" href={article.url} target="_blank">
     <div className="flex items-center justify-between px-4 py-2 space-x-1 hover:bg-gray-200 transition duration-500 ease-out">

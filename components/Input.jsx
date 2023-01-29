@@ -7,9 +7,7 @@ import { addDoc, collection, serverTimestamp, updateDoc, doc} from 'firebase/fir
 import { getDownloadURL, ref, uploadString,  } from "firebase/storage"
 
 
-type Props = {}
-
-export default function Input({}: Props) {
+export default function Input({}) {
     const { data : session } = useSession()
     const [input, setInput] = useState()
     const [selectedFile, setSelectedFile] = useState(null)

@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Post.jsx", "components/Feed.jsx", "components/Input.jsx", "components/News.jsx", "components/Sidebar.jsx", "components/SidebarMenuItem.jsx", "components/Widgets.jsx", "pages/api/auth/[...nextauth].js", "pages/auth/signin.jsx", "pages/_app.jsx", "pages/_document.jsx", "pages/index.jsx"],
   "exclude": ["node_modules"]
 }

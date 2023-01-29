@@ -1,16 +1,13 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Sidebar from "../components/Sidebar"
 import Feed from "../components/Feed"
 import Widgets from "../components/Widgets"
+
   
 
-type Props = {
-  newsResults: string
-  randomUsersResults: string
-}
 
-export default function Home ({newsResults, randomUsersResults }: Props) {
+
+export default function Home ({newsResults, randomUsersResults }) {
   return (
     <>
       <Head>

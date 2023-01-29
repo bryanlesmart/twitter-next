@@ -1,12 +1,5 @@
-import React from 'react'
 
-type SideProps = {
-  text: string,
-  Icon: any
-  active?: boolean
-}
-
-export default function SidebarMenuItem({text, Icon, active}: SideProps) {
+export default function SidebarMenuItem({text, Icon, active}) {
   return (
     <div className="hoverEffect flex items-center text-gray-700 justify-center xl:justify-start text-lg space-x-3">
         <Icon className="h-7"/>

@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { getProviders ,signIn } from 'next-auth/react' 
 
-type Props = {}
 
-export default function SignIn({ providers }: Props) {
+export default function SignIn({ providers} ) {
 
   const onGoogleClick = async () => {
 

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 
 import { SearchIcon } from "@heroicons/react/outline"
 import { AnimatePresence, motion } from "framer-motion"
@@ -7,7 +8,7 @@ import News from './News'
 
 
 
-export default function Widgets({ newsResults, randomUsersResults }: Props) {
+export default function Widgets({ newsResults, randomUsersResults }) {
     const [articleNum, setArticleNum ] = useState(3)
     const [randomUserNum, setRandomUserNum ] = useState(3)
 

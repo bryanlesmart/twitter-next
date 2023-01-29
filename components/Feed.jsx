@@ -6,9 +6,8 @@ import { useState , useEffect } from 'react'
 import {onSnapshot, query, collection, orderBy} from 'firebase/firestore'
 import { db } from '../firebase'
 
-type Props = {}
 
-export default function Feed({}: Props) {
+export default function Feed({}) {
   const [posts, setPosts] = useState([])
   
   useEffect(()=>{
