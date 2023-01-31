@@ -16,13 +16,16 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { db, storage  } from "../firebase";
 import { signIn, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { ref, deleteObject } from "firebase/storage";
+import { useRouter } from "next/router";
 
 export default function Post({ post }) {
   const { data: session } = useSession();
   const [likes, setLikes] = useState([]);
+  const router = useRouter();
   const [hasLiked, setHasLiked] = useState(false);
 
   useEffect(() => {
@@ -30,13 +33,15 @@ export default function Post({ post }) {
       collection(db, "posts", post.id, "likes"),
       (snapshot) => setLikes(snapshot.docs)
     );
-  }, [db]);
+  }, [post.id]);
 
   useEffect(() => {
-    setHasLiked(
-      likes.findIndex((like) => like.id === session?.user.id) !== -1
-    );
-  }, [likes]);
+    setHasLiked(likes.findIndex((like) => like.id === session?.user.id) !== -1);
+  }, [likes, session]);
+
+  async function deletePost() {
+    await deleteDoc(doc(db, "posts", session?.user.id));
+  }
 
   async function likePost() {
     if (session) {
@@ -52,12 +57,26 @@ export default function Post({ post }) {
     }
   }
 
+  async function deletePost() {
+    if (window.confirm("Are you sure do you want to delete?")) {
+      await deleteDoc(doc(db, "posts", post.id));
+      if (post.data().image) {
+        deleteObject(ref(storage, `posts/${post.id}/image`));
+      }
+      router.push("/");
+    }
+  }
+
   return (
     <div className="flex p-3 cursor-pointer border-b border-gray-200">
       {/* user image */}
-      <img className="h-11 w-11 rounded-full mr-4 " src={post.data().userImage} alt={post.data().name} />
+      <img
+        className="h-11 w-11 rounded-full mr-4 "
+        src={post.data().userImage}
+        alt={post.data().name}
+      />
       <div className="flex-1">
-      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
           {/* post user info */}
           <div className="flex items-center space-x-1 whitespace-nowrap">
             <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
@@ -75,11 +94,19 @@ export default function Post({ post }) {
           <DotsHorizontalIcon className="h-10 hoverEffect w-10 hover:bg-sky-100 hover:text-sky-500 p-2 " />
         </div>
 
-        <img  src={post.data().image} alt="image" className="rounded-2xl mr-2" />
+        <p>{post.data().text}</p>
+        {post.data().image ? (
+          <img
+            src={post.data().image}
+            alt="image"
+            className="rounded-2xl mr-2"
+          />
+        ) : (
+          <></>
+        )}
+
         <div className="flex justify-between text-gray-500 p-2">
-        <ChatIcon className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 hover:bg-sky-100" />
-          <TrashIcon className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100" />
-          <HeartIcon className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100" />
+          <ChatIcon className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 hover:bg-sky-100" />
           <div className="flex items-center">
             {hasLiked ? (
               <HeartIconFilled
@@ -101,12 +128,17 @@ export default function Post({ post }) {
               </span>
             )}
           </div>
+          {session?.user.id === post?.data()?.id && (
+            <TrashIcon
+              onClick={deletePost}
+              className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"
+            />
+          )}
 
           <ShareIcon className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 hover:bg-sky-100" />
           <ChartBarIcon className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 hover:bg-sky-100" />
         </div>
       </div>
     </div>
-  )
-
+  );
 }
